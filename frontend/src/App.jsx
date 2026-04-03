@@ -1,14 +1,35 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 
-/* ── Static waypoint (ROS2 PoseStamped) ─────────────────────────── */
-const STATIC_WAYPOINT = {
-    type: 'set_waypoint',
+/* ── Static ROS2 route (set_route) ────────────────────────────────────── */
+const STATIC_ROUTE = {
+    type: 'set_route',
     data: {
-        header: { stamp: { sec: 0, nanosec: 0 }, frame_id: 'map' },
-        pose: {
-            position: { x: 30.12345, y: 31.54321, z: 0.0 },
-            orientation: { x: 0.0, y: 0.0, z: 0.707, w: 0.707 },
-        },
+        route: [
+            {
+                header: { stamp: { sec: 0, nanosec: 0 }, frame_id: 'map' },
+                pose: { position: { x: 0.0, y: 0.0, z: 0.0 }, orientation: { x: 0.0, y: 0.0, z: 0.998, w: 0.060 } },
+            },
+            {
+                header: { stamp: { sec: 0, nanosec: 0 }, frame_id: 'map' },
+                pose: { position: { x: -13.84, y: 1.11, z: 0.0 }, orientation: { x: 0.0, y: 0.0, z: -0.858, w: 0.513 } },
+            },
+            {
+                header: { stamp: { sec: 0, nanosec: 0 }, frame_id: 'map' },
+                pose: { position: { x: -28.36, y: -26.02, z: 0.0 }, orientation: { x: 0.0, y: 0.0, z: -0.864, w: 0.503 } },
+            },
+            {
+                header: { stamp: { sec: 0, nanosec: 0 }, frame_id: 'map' },
+                pose: { position: { x: -62.68, y: -86.51, z: 0.0 }, orientation: { x: 0.0, y: 0.0, z: -0.916, w: 0.401 } },
+            },
+            {
+                header: { stamp: { sec: 0, nanosec: 0 }, frame_id: 'map' },
+                pose: { position: { x: -117.28, y: -145.67, z: 0.0 }, orientation: { x: 0.0, y: 0.0, z: -0.998, w: 0.062 } },
+            },
+            {
+                header: { stamp: { sec: 0, nanosec: 0 }, frame_id: 'map' },
+                pose: { position: { x: -127.08, y: -146.89, z: 0.0 }, orientation: { x: 0.0, y: 0.0, z: -0.998, w: 0.062 } },
+            },
+        ],
     },
 };
 
@@ -224,11 +245,11 @@ export default function App() {
                         id="btn-waypoint"
                         className="btn-waypoint"
                         onClick={() => {
-                            send(STATIC_WAYPOINT);
-                            addLog('Sent: static waypoint (ROS2 PoseStamped)');
+                            send(STATIC_ROUTE);
+                            addLog('Sent: set_route (6 ROS2 PoseStamped waypoints)');
                         }}
                     >
-                        📍 Send Static Waypoint
+                        📍 Send Route (6 Waypoints)
                     </button>
                 </section>
 

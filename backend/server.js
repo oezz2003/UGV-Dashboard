@@ -117,6 +117,18 @@ wss.on('connection', (ws) => {
             return;
         }
 
+        // ── Set route (dashboard → relay to Pi) ───────────────────────────
+        if (msg.type === 'set_route') {
+            const count = msg.data?.route?.length ?? 0;
+            console.log(`🗺️  set_route — relaying ${count} waypoints to UGV`);
+            broadcast(ws, msg);
+            ws.send(JSON.stringify({
+                type: 'route_ack',
+                message: `Route with ${count} waypoints relayed to UGV`,
+            }));
+            return;
+        }
+
         // ── Unknown message ───────────────────────────────────────────────
         ws.send(JSON.stringify({ type: 'error', message: `Unknown type: ${msg.type}` }));
     });
