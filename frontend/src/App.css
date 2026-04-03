@@ -1,0 +1,355 @@
+/* ══════════════════════════════════════════════════════════════════
+   UGV Dashboard — Test Build Styles
+   Dark theme · glassmorphism cards · Inter font
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Reset & Globals ─────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg:          #0b1120;
+  --surface:     rgba(255, 255, 255, 0.04);
+  --surface-2:   rgba(255, 255, 255, 0.07);
+  --border:      rgba(255, 255, 255, 0.08);
+  --text:        #e2e8f0;
+  --text-muted:  #64748b;
+  --accent:      #00d4ff;
+  --accent-glow: rgba(0, 212, 255, 0.25);
+  --green:       #22c55e;
+  --red:         #ef4444;
+  --yellow:      #eab308;
+  --radius:      12px;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* ── Login Screen ────────────────────────────────────────────────── */
+.login-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 360px;
+  padding: 40px 32px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  backdrop-filter: blur(24px);
+  text-align: center;
+}
+
+.login-logo {
+  font-size: 48px;
+  color: var(--accent);
+  margin-bottom: 8px;
+  filter: drop-shadow(0 0 12px var(--accent-glow));
+}
+
+.login-card h1 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.login-sub {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin-bottom: 28px;
+}
+
+.login-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.login-card input {
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.login-card input:focus {
+  border-color: var(--accent);
+}
+
+.btn-primary {
+  margin-top: 8px;
+  padding: 12px;
+  background: var(--accent);
+  color: #0b1120;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.1s;
+}
+.btn-primary:hover  { box-shadow: 0 0 20px var(--accent-glow); }
+.btn-primary:active { transform: scale(0.97); }
+
+.status-badge {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 4px 14px;
+  border-radius: 20px;
+  background: var(--surface);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ── Header ──────────────────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  flex-shrink: 0;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  font-size: 24px;
+  color: var(--accent);
+  filter: drop-shadow(0 0 6px var(--accent-glow));
+}
+
+.header h1 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+.status-dot.green { background: var(--green); box-shadow: 0 0 8px var(--green); }
+.status-dot.red   { background: var(--red);   box-shadow: 0 0 8px var(--red); }
+
+.status-text {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.btn-disconnect {
+  padding: 6px 16px;
+  background: transparent;
+  border: 1px solid var(--red);
+  color: var(--red);
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-disconnect:hover { background: rgba(239, 68, 68, 0.15); }
+
+/* ── Main Layout ─────────────────────────────────────────────────── */
+.main {
+  display: grid;
+  grid-template-columns: 280px 1fr 300px;
+  gap: 16px;
+  padding: 16px 20px;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ── Panel (shared card style) ──────────────────────────────────── */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+}
+
+.panel h2 {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+/* ── Controls Panel ──────────────────────────────────────────────── */
+.controls-panel {
+  align-items: center;
+}
+
+/* D-Pad */
+.dpad {
+  display: grid;
+  grid-template-areas:
+    ".    up   ."
+    "left cntr right"
+    ".    down .";
+  grid-template-columns: 64px 64px 64px;
+  grid-template-rows:    64px 64px 64px;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+
+.dpad-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  user-select: none;
+}
+.dpad-btn span { font-size: 9px; opacity: 0.5; margin-top: 2px; }
+.dpad-btn:hover  { background: var(--accent-glow); border-color: var(--accent); }
+.dpad-btn:active { transform: scale(0.92); background: rgba(0, 212, 255, 0.35); }
+
+.dpad-btn.up    { grid-area: up; }
+.dpad-btn.left  { grid-area: left; }
+.dpad-btn.right { grid-area: right; }
+.dpad-btn.down  { grid-area: down; }
+.dpad-center    { grid-area: cntr; }
+
+/* Waypoint button */
+.btn-waypoint {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.1s;
+}
+.btn-waypoint:hover  { box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
+.btn-waypoint:active { transform: scale(0.97); }
+
+/* ── Telemetry Panel ─────────────────────────────────────────────── */
+.telem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.telem-item {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 12px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  border-left: 3px solid var(--border);
+  transition: border-color 0.3s;
+}
+.telem-item.green  { border-left-color: var(--green); }
+.telem-item.red    { border-left-color: var(--red); }
+.telem-item.yellow { border-left-color: var(--yellow); }
+
+.telem-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.telem-value {
+  font-size: 18px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Log Panel ───────────────────────────────────────────────────── */
+.log-panel {
+  overflow: hidden;
+}
+
+.log-scroll {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-right: 4px;
+}
+
+.log-entry {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  padding: 6px 8px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.log-time {
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+.log-msg {
+  color: var(--text-muted);
+  word-break: break-word;
+}
+
+.muted {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────────── */
+::-webkit-scrollbar         { width: 4px; }
+::-webkit-scrollbar-track   { background: transparent; }
+::-webkit-scrollbar-thumb   { background: var(--border); border-radius: 4px; }
+
+/* ── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .main {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+}
